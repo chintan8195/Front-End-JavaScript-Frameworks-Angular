@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 })
 export class DishdetailComponent implements OnInit {
 
-  dish: Dish;
+  dish:  Dish;
 
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
