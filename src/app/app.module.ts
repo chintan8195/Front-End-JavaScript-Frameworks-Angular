@@ -6,6 +6,10 @@ import{ HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
 import { MatListModule } from '@angular/material/list';
@@ -56,11 +60,14 @@ import { LoginComponent } from './login/login.component';
     MatListModule,
     FlexLayoutModule,
     AppRoutingModule,
-    MatFormFieldModule, 
+    MatFormFieldModule,
+    MatSelectModule,
+    MatSlideToggleModule, 
     MatInputModule,
     MatCheckboxModule,
     FormsModule, 
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   providers: [  DishService,
     PromotionService,
