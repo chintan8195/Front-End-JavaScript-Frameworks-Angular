@@ -20,6 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { RestangularModule, Restangular } from 'ngx-restangular';
+import { RestangularConfigFactory } from './shared/restConfig';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatSliderModule} from '@angular/material/slider';
@@ -77,7 +79,8 @@ import {baseURL} from './shared/baseurl';
     HttpClientModule,
     FormsModule, 
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
   providers: [  DishService,
     PromotionService,
