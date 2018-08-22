@@ -19,7 +19,9 @@ export class DishdetailComponent implements OnInit {
   next: number;
   commentForm: FormGroup;
   comment: Comment;
-  dishErrMess: string;
+  errMess: string;
+  dishcopy = null;
+
 
   @ViewChild('cform') commentFormDirective;
 
@@ -49,10 +51,11 @@ export class DishdetailComponent implements OnInit {
 
   ngOnInit() {
     this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
-    this.route.params.pipe(switchMap((params: Params) => this.dishservice.getDish(+params['id'])))
-    .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); },
-    errmess => this.dishErrMess = <any>errmess.message
-    );
+    this.route.params
+      .pipe(switchMap((params: Params) => { return this.dishservice.getDish(+params['id']); }))
+      .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); },
+          errmess => { this.dish = null; this.errMess = <any>errmess; });
+          
   }
 
   createForm():void {
@@ -94,12 +97,16 @@ export class DishdetailComponent implements OnInit {
     this.comment.date = new Date().toISOString();
     console.log(this.comment);
     
-    this.dish.comments.push(this.comment);
+    this.dishcopy.comments.push(this.comment);
+    this.dishcopy.save()
+      .subscribe(dish => { this.dish = dish; console.log(this.dish); });
     this.commentForm.reset({
       author: '',
       rating: '5',
       comment: ''
     });
+
+
     this.commentFormDirective.resetForm();
     console.log(this.commentFormDirective.form.controls.rating.setValue(5));
   }
